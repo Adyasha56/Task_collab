@@ -1,0 +1,25 @@
+# --- Environment / Secrets ---
+.env
+.env.local
+*.pem
+
+# --- OS-specific files ---
+.DS_Store
+Thumbs.db
+
+# --- Build and Dependency Folders ---
+node_modules/
+dist/
+build/
+bin/
+obj/
+
+# --- Logs and Caches ---
+*.log
+npm-debug.log*
+.cache/
+
+# --- IDE Settings ---
+.vscode/
+.idea/
+*.swp
