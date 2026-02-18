@@ -8,12 +8,25 @@ export const createTask = async (req, res) => {
     if (task.boardId) {
       io.to(task.boardId.toString()).emit("taskCreated", task);
     }
+    
+    // Log activity with more details
+    let details = `created task "${task.title}"`;
+    let assignedToUser = null;
+    
+    if (task.assignedTo && task.assignedTo.length > 0) {
+      assignedToUser = task.assignedTo[0];
+      details += ` and assigned it`;
+    }
+    
     await logActivity({
       user: req.user.id,
       action: "created task",
+      details,
       taskId: task._id,
       boardId: task.boardId,
+      assignedToUser,
     });
+    
     res.json(task);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -33,12 +46,28 @@ export const updateTask = async (req, res) => {
     if (task.boardId) {
       io.to(task.boardId.toString()).emit("taskUpdated", task);
     }
+    
+    // Log activity with assignment details
+    let details = `updated task "${task.title}"`;
+    let assignedToUser = null;
+    
+    if (req.body.assignedTo && req.body.assignedTo.length > 0) {
+      assignedToUser = req.body.assignedTo[0];
+      details = `assigned task "${task.title}" to a user`;
+    } else if (req.body.status) {
+      details = `changed task status to "${req.body.status}"`;
+    }
+    
     await logActivity({
       user: req.user.id,
       action: "updated task",
+      details,
       taskId: task._id,
       boardId: task.boardId,
+      assignedToUser,
+      changes: req.body,
     });
+    
     res.json(task);
   } catch (error) {
     res.status(500).json({ error: error.message });
