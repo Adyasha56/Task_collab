@@ -31,7 +31,7 @@ const corsOptions = {
       "http://127.0.0.1:3000",
     ];
 
-    // Add production frontend URL from environment
+    
     if (process.env.FRONTEND_URL) {
       allowedOrigins.push(process.env.FRONTEND_URL);
     }
@@ -63,7 +63,7 @@ app.use("/api/activities", activityRoutes);
 
 app.use(errorHandler);
 
-/* SOCKET LOGIC */
+
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
