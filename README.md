@@ -1129,7 +1129,7 @@ task_collab/
 **Test 2: Board Management**
 1. Create board
 2. Verify owner/member status
-3. Join board with second user
+3. Join board with second user(copy the url and paste it in browser 2 , where u logged in as another user)
 4. Verify member list updates
 
 **Test 3: Task Operations**
