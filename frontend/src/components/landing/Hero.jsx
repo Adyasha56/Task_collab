@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, Play, Zap, Users, BarChart3 } from 'lucide-react'
+import { ArrowRight, Zap, GitBranch, Shield, Layers } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Hero() {
   const navigate = useNavigate()
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8">
       {/* Background Image Placeholder - user will add their own image here */}
       <div className="absolute inset-0 z-0">
         {/* Background gradient */}
@@ -62,7 +62,7 @@ export default function Hero() {
         </p>
 
         {/* CTA buttons */}
-        <div className="animate-fade-up-delay-3 flex flex-col sm:flex-row gap-3 justify-center mb-16">
+        <div className="animate-fade-up-delay-3 flex flex-col sm:flex-row gap-3 justify-center mb-10">
           <Button
             variant="purple"
             size="lg"
@@ -81,18 +81,15 @@ export default function Hero() {
           </Button>
         </div>
 
-        {/* Social proof stats */}
-        <div className="animate-fade-up-delay-4 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12">
+        {/* Feature highlights */}
+        <div className="animate-fade-up-delay-4 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
           {[
-            { icon: Users, value: '10k+', label: 'Active teams' },
-            { icon: BarChart3, value: '2M+', label: 'Tasks managed' },
-            { icon: Zap, value: '99.9%', label: 'Uptime' },
-          ].map(({ icon: Icon, value, label }) => (
-            <div key={label} className="flex items-center gap-2.5 text-white/40">
+            { icon: GitBranch, label: 'Assign & track tasks' },
+            { icon: Layers, label: 'Organize by boards' },
+            { icon: Shield, label: 'Role-based access' },
+          ].map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-2 text-white/40">
               <Icon className="w-4 h-4 text-purple-500/60" />
-              <span className="font-display font-semibold text-white/80 text-sm">
-                {value}
-              </span>
               <span className="text-xs">{label}</span>
             </div>
           ))}

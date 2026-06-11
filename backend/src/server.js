@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import { fileURLToPath } from "url";
+import path from "path";
 import http from "http";
 import { Server } from "socket.io";
 
@@ -14,7 +16,8 @@ import activityRoutes from "./routes/activity.routes.js";
 
 import { errorHandler } from "./middleware/error.middleware.js";
 
-dotenv.config();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, ".env") });
 connectDB();
 
 const app = express();
